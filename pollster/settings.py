@@ -17,7 +17,7 @@ env = Env()
 env.read_env()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -49,7 +49,7 @@ INSTALLED_APPS = [
 # Email Backend
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-SITE_ID = env.int("SITE_ID") # Site ID
+SITE_ID = env.int("SITE_ID")  # Site ID
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -127,8 +127,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / "static"] # new
-STATIC_ROOT = BASE_DIR / "staticfiles" # new
+STATICFILES_DIRS = [BASE_DIR / "static"]  # new
+STATIC_ROOT = BASE_DIR / "staticfiles"  # new
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Default primary key field type
